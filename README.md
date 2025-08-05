@@ -2,16 +2,16 @@ Convert structured, paper-based dental records into a searchable digital databas
 
 ---
 
-## 🗂️ PHASE 1: PLANNING & SETUP
+## PHASE 1: PLANNING & SETUP
 
-### 🔍 1.1 Document Assessment
+### 1.1 Document Assessment
 
 * Identify types of structured forms (e.g. patient intake, insurance, treatment, X-rays).
 * Determine key fields per form (e.g. Name, DOB, Procedure, Date, Notes).
 * Check for **handwritten vs typed** text.
 * Estimate number of pages and files.
 
-### 🛠️ 1.2 Environment Setup
+### 1.2 Environment Setup
 
 Install and configure the following tools:
 
@@ -30,22 +30,22 @@ Install and configure the following tools:
 pip install pytesseract opencv-python pdf2image Pillow sqlite3
 ```
 
-### 🖥️ Hardware Requirements
+### Hardware Requirements
 
 * A **scanner** (300 DPI minimum) or multi-function printer.
 * Computer with ≥ 8 GB RAM and ≥ 100 GB free storage.
 
 ---
 
-## 📸 PHASE 2: DIGITIZATION & SCANNING
+## PHASE 2: DIGITIZATION & SCANNING
 
-### 🔧 2.1 Scan Documents
+### 2.1 Scan Documents
 
 * Scan in **300 DPI**, grayscale or color.
 * Save as **PDFs** (one file per patient or form).
 * Use naming convention: `Lastname_Firstname_DOB.pdf`.
 
-### 📂 2.2 Organize Files
+### 2.2 Organize Files
 
 * Create folders by year or type:
 
@@ -58,7 +58,7 @@ pip install pytesseract opencv-python pdf2image Pillow sqlite3
 
 ---
 
-## 🧼 PHASE 3: IMAGE PROCESSING & OCR
+## PHASE 3: IMAGE PROCESSING & OCR
 
 ### 🧪 3.1 Convert PDFs to Images
 
@@ -69,7 +69,7 @@ images = convert_from_path("sample_form.pdf", dpi=300)
 images[0].save("page1.png", "PNG")
 ```
 
-### 🧼 3.2 Preprocess Images (OpenCV)
+### 3.2 Preprocess Images (OpenCV)
 
 ```python
 import cv2
@@ -82,9 +82,9 @@ def preprocess(img_path):
 
 ---
 
-## 🧠 PHASE 4: STRUCTURED OCR EXTRACTION
+## PHASE 4: STRUCTURED OCR EXTRACTION
 
-### 📤 4.1 Run OCR with Layout Awareness
+### 4.1 Run OCR with Layout Awareness
 
 Use `pytesseract.image_to_data()` to extract **text + bounding boxes**.
 
@@ -97,7 +97,7 @@ def extract_text(img):
     return data[data.text.notnull()]
 ```
 
-### 📋 4.2 Map Fields Using Coordinates (Template Matching)
+### 4.2 Map Fields Using Coordinates (Template Matching)
 
 * Choose a **template form**.
 * Record pixel coordinates for fields like:
@@ -115,9 +115,9 @@ def get_field(df, x1, x2, y1, y2):
 
 ---
 
-## 🧾 PHASE 5: STRUCTURED DATA STORAGE
+## PHASE 5: STRUCTURED DATA STORAGE
 
-### 🛢️ 5.1 Design a Database Schema
+### 5.1 Design a Database Schema
 
 Example schema for `patients` table:
 
@@ -132,7 +132,7 @@ CREATE TABLE patients (
 );
 ```
 
-### 🧠 5.2 Populate Automatically
+### 5.2 Populate Automatically
 
 ```python
 import sqlite3
@@ -148,9 +148,9 @@ conn.commit()
 
 ---
 
-## 🕵️ PHASE 6: SEARCH & ACCESS
+## PHASE 6: SEARCH & ACCESS
 
-### 🔍 6.1 Query Interface
+### 6.1 Query Interface
 
 You can build a simple **Tkinter GUI** or **Flask web app** for:
 
@@ -165,14 +165,14 @@ Or use a tool like:
 
 ---
 
-## ✅ PHASE 7: QUALITY CONTROL & ERROR HANDLING
+## PHASE 7: QUALITY CONTROL & ERROR HANDLING
 
-### 📏 7.1 Manual Verification
+### 7.1 Manual Verification
 
 * Randomly check 5-10% of digitized files.
 * Compare scanned values vs extracted ones.
 
-### ⚠️ 7.2 Error Logging
+###  7.2 Error Logging
 
 Log:
 
@@ -182,22 +182,22 @@ Log:
 
 ---
 
-## 🛡️ PHASE 8: SECURITY & BACKUP
+## PHASE 8: SECURITY & BACKUP
 
-### 🔐 8.1 HIPAA-Friendly Practices (Best-Effort)
+### 8.1 HIPAA-Friendly Practices (Best-Effort)
 
 * Store data locally or on HIPAA-compliant services.
 * Encrypt `dental_records.db` using tools like **SQLCipher**.
 * Password-protect access to files/scripts.
 
-### 💾 8.2 Backup Strategy
+### 8.2 Backup Strategy
 
 * Regularly back up files to an **external drive**.
 * Optionally automate with `cron` jobs.
 
 ---
 
-## 🧪 OPTIONAL: HANDWRITING SUPPORT
+## OPTIONAL: HANDWRITING SUPPORT
 
 For fields with handwriting (e.g. dentist notes):
 
@@ -206,7 +206,7 @@ For fields with handwriting (e.g. dentist notes):
 
 ---
 
-## 📅 Timeline Estimate (1–2 Months)
+## Timeline Estimate (1–2 Months)
 
 | Week | Task                                       |
 | ---- | ------------------------------------------ |
@@ -216,6 +216,4 @@ For fields with handwriting (e.g. dentist notes):
 | 6    | Build GUI/search, verify data              |
 | 7    | QA, documentation, backup                  |
 
----
 
-Would you like me to create a **starter Python script** for the OCR pipeline?
