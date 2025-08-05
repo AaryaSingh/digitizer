@@ -201,7 +201,7 @@ Log:
 
 For fields with handwriting (e.g. dentist notes):
 
-* Try **TrOCR** (Transformers for OCR): [https://github.com/microsoft/trocr](https://github.com/microsoft/trocr)
+* Try **TrOCR** (Transformers for OCR): [https://huggingface.co/docs/transformers/en/model_doc/trocr]
 * Or use **Google Cloud Vision OCR** (free for small use)
 
 ---
